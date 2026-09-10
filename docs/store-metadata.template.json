@@ -1,0 +1,73 @@
+{
+  "product": {
+    "name": "Lock in",
+    "version": "0.2.1",
+    "summary": "Keep the pages your task needs. Set a focus session, manage distractions, and review your progress.",
+    "description": "Choose a task and its allowed websites or exact pages. Block selected domains, customize temporary access and exit delay, and add time when needed. Review completed sessions in Dashboard. All features are available without payment or an account. Records stay in your browser. Incognito/private coverage requires browser permission; private attempts are excluded from reports. Technical recovery is always available.",
+    "singlePurpose": "Help the user maintain a chosen browsing boundary during a timed focus session."
+  },
+  "publisher": {
+    "name": "",
+    "supportEmail": "",
+    "supportUrl": "",
+    "privacyPolicyUrl": ""
+  },
+  "assets": {
+    "icon128": "store-assets/icon-128.png",
+    "screenshots": [
+      "store-assets/extension-setup-1280x800.png",
+      "store-assets/extension-dashboard-1280x800.png"
+    ],
+    "smallPromotionalTile": "",
+    "largePromotionalTile": "",
+    "operaScreenshots": [
+      "store-assets/extension-setup-opera-612x408.png",
+      "store-assets/extension-dashboard-opera-612x408.png"
+    ],
+    "icon300": "store-assets/icon-300.png"
+  },
+  "browserTargets": {
+    "chrome": {
+      "status": "package_ready_listing_incomplete",
+      "archive": "public/lock-in-chromium-v0.2.1.zip",
+      "storeListingUrl": "",
+      "submitted": false,
+      "approved": false
+    },
+    "edge": {
+      "status": "package_candidate_untested",
+      "archive": "public/lock-in-chromium-v0.2.1.zip",
+      "storeListingUrl": "",
+      "submitted": false,
+      "approved": false
+    },
+    "firefox": {
+      "status": "package_linted_local_unsigned",
+      "archive": "public/lock-in-firefox-v0.2.1.zip",
+      "geckoId": "",
+      "storeListingUrl": "",
+      "submitted": false,
+      "approved": false
+    },
+    "opera": {
+      "status": "package_candidate_untested",
+      "archive": "public/lock-in-chromium-v0.2.1.zip",
+      "storeListingUrl": "",
+      "submitted": false,
+      "approved": false
+    },
+    "safari": {
+      "status": "separate_wrapper_required",
+      "archive": "",
+      "storeListingUrl": "",
+      "submitted": false,
+      "approved": false
+    }
+  },
+  "release": {
+    "checksums": "public/SHA256SUMS",
+    "manifest": "public/release-manifest.json",
+    "ownerSignoff": false,
+    "releaseNotes": "docs/RELEASE-NOTES.md"
+  }
+}

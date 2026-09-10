@@ -1,0 +1,13 @@
+{
+  "app/dashboard-view.tsx": "35a2d2aa4c5736939dfed5fcc7a163418912f646f41bed1f7f3167e4fc91c10d",
+  "app/layout.tsx": "a87cc38f9ad4b4610c5e640502c45414d42f139251b99d2fab1bdb87fcc16264",
+  "app/public-chrome.tsx": "1c759e9be34861123d5940ddfda2921c12e2a7783bba898cfbce0dbc80c35d1d",
+  "app/page.tsx": "1c9a67fd7b6a22ee71dda9ece1e5fb738044a4d0fe3d90b2949eab50aa6e559d",
+  "core/engine.mjs": "7fb83bc841ca277e051574b4f29619aa420dbbbe25e5c559b398a05d34f11989",
+  "extension/background.mjs": "05ddc34fb4a31100d3fd6ea35b77f8cb744d25c9a5d791d0bc72563f401a12a9",
+  "extension/rules.mjs": "0ed9369576608cf4b502ee45f480932a378832f554d229d368959dc529687f35",
+  "extension/api.mjs": "e65dd0246f4d307e855307d79f02b1a9c916ba7be0f256af0eff4798749762f9",
+  "extension/ui.mjs": "72bbbfdc25bd35c7c4449b421b9a55aa566742680933f5015a1894872bc4c052",
+  "extension/dashboard.mjs": "76ddeb42f89fa3d90be24608fb29eb71fb85d054703ac34aeb24d45d35fc103a",
+  "extension/engine.mjs": "7fb83bc841ca277e051574b4f29619aa420dbbbe25e5c559b398a05d34f11989"
+}

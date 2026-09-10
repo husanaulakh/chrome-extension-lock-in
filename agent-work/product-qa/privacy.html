@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Privacy — Lock in</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="prose">
+    <main>
+      <header><strong>Lock in</strong><a href="guide.html">Guide ↗</a></header>
+      <h1>Your records stay with you.</h1>
+      <p>
+        Lock in has no account, advertising, telemetry, remote code, or data
+        server. It does not transmit your browsing records.
+      </p>
+      <h2>What is stored</h2>
+      <p>
+        Regular sessions store the task name, chosen focus URL, resource rules,
+        blocked domains, timestamps, time extensions, temporary permission
+        domains, and domain-level distraction attempts in this browser profile.
+        Full focus URLs can include document IDs or query values. Access and
+        exit reasons are validated but not retained.
+      </p>
+      <p>
+        Up to 100 sessions and 2,000 observed attempts per session are kept.
+        Reports count retained observations and may count block-page reloads
+        again. They are not a full browsing audit.
+      </p>
+      <h2>Private browsing</h2>
+      <p>
+        Private navigation attempts are never added to reports. Sessions started
+        in private windows use temporary browser storage and temporary network
+        rules, with no history entry. Closing the browser clears them. Regular
+        sessions remain regular sessions when used from a private window;
+        intentional changes to their allowed resources remain in that saved
+        session.
+      </p>
+      <h2>Permission purpose</h2>
+      <p>
+        Storage preserves session state. Alarms schedule expiry. Tabs and
+        webNavigation identify destinations and route changes. Declarative
+        network rules redirect disallowed top-level HTTP(S) pages. Host
+        permissions allow redirects on the sites you choose. Page contents,
+        keyboard input, passwords, and cookies are not read.
+      </p>
+      <p>
+        The blocked destination is temporarily held in the block page’s URL
+        fragment so an approved access request can return there. Its path and
+        query are not saved in attempt statistics.
+      </p>
+      <h2>Your controls</h2>
+      <p>
+        Export a JSON backup or delete history from Dashboard. Exported files
+        may contain personal task names and focus URLs. Removing the extension
+        clears its browser storage. There is no cloud backup or sync.
+      </p>
+      <p>
+        Private-window permission is off until you enable it in the browser.
+        Browser vendors may collect their own diagnostics, which are outside
+        this extension’s control.
+      </p>
+      <footer>
+        <a href="dashboard.html">Dashboard</a><a href="guide.html">Guide</a>
+      </footer>
+    </main>
+  </body>
+</html>

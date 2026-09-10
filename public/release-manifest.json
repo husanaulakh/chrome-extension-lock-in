@@ -1,0 +1,38 @@
+{
+  "name": "Lock in",
+  "version": "0.2.1",
+  "archives": [
+    {
+      "file": "lock-in-chromium-v0.2.1.zip",
+      "sha256": "2c0473d1c00f1a13e8eedd1a00c541674a4e898dd9391873ad239143a4721c88"
+    },
+    {
+      "file": "lock-in-firefox-v0.2.1.zip",
+      "sha256": "4529117ed3ffa592c7283d7abe7bc89f91302f8017c830dd4a38754396dcb3b7"
+    },
+    {
+      "file": "lock-in-chromium.zip",
+      "sha256": "2c0473d1c00f1a13e8eedd1a00c541674a4e898dd9391873ad239143a4721c88"
+    },
+    {
+      "file": "lock-in-firefox.zip",
+      "sha256": "4529117ed3ffa592c7283d7abe7bc89f91302f8017c830dd4a38754396dcb3b7"
+    },
+    {
+      "file": "lock-in-extension.zip",
+      "sha256": "2c0473d1c00f1a13e8eedd1a00c541674a4e898dd9391873ad239143a4721c88"
+    }
+  ],
+  "browsers": {
+    "chromium": {
+      "manifest": "releases/chromium/manifest.json",
+      "versionedArchive": "lock-in-chromium-v0.2.1.zip",
+      "stableAlias": "lock-in-chromium.zip"
+    },
+    "firefox": {
+      "manifest": "releases/firefox/manifest.json",
+      "versionedArchive": "lock-in-firefox-v0.2.1.zip",
+      "stableAlias": "lock-in-firefox.zip"
+    }
+  }
+}

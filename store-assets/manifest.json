@@ -1,0 +1,39 @@
+{
+  "source": "actual packaged Chromium extension",
+  "fixture": "local HTTP fixture; no website simulation or remote content",
+  "captures": [
+    {
+      "file": "extension-setup-1280x800.png",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "extension-dashboard-1280x800.png",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "extension-setup-opera-612x408.png",
+      "width": 612,
+      "height": 408
+    },
+    {
+      "file": "extension-dashboard-opera-612x408.png",
+      "width": 612,
+      "height": 408
+    }
+  ],
+  "icons": [
+    {
+      "file": "icon-128.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "file": "icon-300.png",
+      "width": 300,
+      "height": 300
+    }
+  ],
+  "storeApproval": false
+}

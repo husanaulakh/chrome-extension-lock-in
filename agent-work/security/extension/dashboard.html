@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Your progress — Lock in</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dashboard-page">
+    <main>
+      <header><strong>Lock in</strong><a href="index.html">Focus ↗</a></header>
+      <p id="feedback" role="status"></p>
+      <div class="dashboard-title">
+        <div>
+          <p class="eyebrow">YOUR PROGRESS</p>
+          <h1>Time well spent.</h1>
+        </div>
+        <button id="export">Export data</button>
+      </div>
+      <div class="dashboard-controls">
+        <label
+          >Period<select id="period">
+            <option value="7">This week</option>
+            <option value="30">Last 30 days</option>
+            <option value="0">All time</option>
+          </select></label
+        ><button id="refresh">Refresh</button>
+      </div>
+      <section id="current" class="inset" hidden></section>
+      <section class="metrics" aria-label="Session totals">
+        <div>
+          <span>Time in session</span><strong id="total-time">0h 0m</strong>
+        </div>
+        <div>
+          <span>Sessions finished</span><strong id="completed">0 / 0</strong>
+        </div>
+        <div>
+          <span>Distractions stopped</span><strong id="attempts">0</strong>
+        </div>
+        <div><span>Completion</span><strong id="completion">—</strong></div>
+      </section>
+      <section class="dashboard-card">
+        <h2>Your daily rhythm</h2>
+        <div id="daily-chart" class="daily-chart" role="img"></div>
+        <p id="empty-note" class="muted"></p>
+      </section>
+      <div class="dashboard-columns">
+        <section class="dashboard-card">
+          <h2>What pulled your attention</h2>
+          <div id="domains"></div>
+          <p id="outcomes" class="muted"></p>
+        </section>
+        <section class="dashboard-card">
+          <h2>Recent sessions</h2>
+          <div id="history"></div>
+        </section>
+      </div>
+      <p class="muted">
+        Time includes early exits. Counts describe observed browser events, not
+        work quality. Records stay in this browser profile.
+      </p>
+      <footer>
+        <a href="guide.html">Guide & limits</a
+        ><a href="privacy.html">Privacy</a>
+        <details>
+          <summary>Manage data</summary>
+          <p>
+            Export a copy first. History deletion is unavailable during an
+            active session.
+          </p>
+          <button id="clear">Delete session history</button>
+          <p id="delete-confirm" hidden>
+            Delete all recorded sessions? This cannot be undone.
+            <button id="confirm-clear">Confirm deletion</button>
+          </p>
+        </details>
+      </footer>
+    </main>
+    <script type="module" src="dashboard.mjs"></script>
+  </body>
+</html>

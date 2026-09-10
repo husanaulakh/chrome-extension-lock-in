@@ -1,0 +1,68 @@
+{
+  "app/dashboard-view.tsx": {
+    "mtime": 1788755518.6883187,
+    "seen": 1789016897.6201122,
+    "ast_hash": "f6171fab28e89df41459f74903a64cf5",
+    "semantic_hash": ""
+  },
+  "app/layout.tsx": {
+    "mtime": 1788967557.3256118,
+    "seen": 1789016897.6201158,
+    "ast_hash": "5c8c7f637a3e9bb2221d9e78c582bab6",
+    "semantic_hash": ""
+  },
+  "app/page.tsx": {
+    "mtime": 1788967524.7875116,
+    "seen": 1789016897.620117,
+    "ast_hash": "a7cde8bca3c01ebb42eecce150a6aaa7",
+    "semantic_hash": ""
+  },
+  "app/public-chrome.tsx": {
+    "mtime": 1788967524.7875116,
+    "seen": 1789016897.6201177,
+    "ast_hash": "0f176ed23c4ab24970ff769bd8f7445d",
+    "semantic_hash": ""
+  },
+  "core/engine.mjs": {
+    "mtime": 1789016860.9271011,
+    "seen": 1789016897.6201184,
+    "ast_hash": "7abac9322abfe31bf64a1d7420db3213",
+    "semantic_hash": ""
+  },
+  "extension/api.mjs": {
+    "mtime": 1788722583.8726492,
+    "seen": 1789016897.620119,
+    "ast_hash": "0c016f26b48cbfd82d5fb2c2f9fb07cc",
+    "semantic_hash": ""
+  },
+  "extension/background.mjs": {
+    "mtime": 1789016384.9917753,
+    "seen": 1789016897.6201198,
+    "ast_hash": "fdaad098e8daaaf131b4ef4e5e53a174",
+    "semantic_hash": ""
+  },
+  "extension/dashboard.mjs": {
+    "mtime": 1788967719.441172,
+    "seen": 1789016897.6201203,
+    "ast_hash": "ef7caf66132138e39dcbf5ace5906eb8",
+    "semantic_hash": ""
+  },
+  "extension/engine.mjs": {
+    "mtime": 1789016861.1999588,
+    "seen": 1789016897.620121,
+    "ast_hash": "7abac9322abfe31bf64a1d7420db3213",
+    "semantic_hash": ""
+  },
+  "extension/rules.mjs": {
+    "mtime": 1789016860.6460984,
+    "seen": 1789016897.620122,
+    "ast_hash": "8171c8c113dbab43c250d767765460f4",
+    "semantic_hash": ""
+  },
+  "extension/ui.mjs": {
+    "mtime": 1789016384.9917753,
+    "seen": 1789016897.6201224,
+    "ast_hash": "e171295e1fc511818364fe9af6cb109e",
+    "semantic_hash": ""
+  }
+}

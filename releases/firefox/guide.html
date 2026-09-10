@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Guide — Lock in</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="prose">
+    <main>
+      <header>
+        <strong>Lock in</strong><a href="dashboard.html">Dashboard ↗</a>
+      </header>
+      <h1>Your focus, your boundaries.</h1>
+      <p>
+        Name your task, choose its website, set a duration, and start. Save open
+        work first: disallowed pages redirect.
+      </p>
+      <h2>Website or exact URL?</h2>
+      <p>
+        <strong>Entire website</strong> allows every page on the specified
+        hostname. It does not automatically allow subdomains.
+        <strong>Only this exact URL</strong> also checks the path, query, and #
+        route. For a single exam page, paste the complete address, choose exact
+        URL, keep “Only allowed resources,” and leave additional resources
+        empty.
+      </p>
+      <p>
+        Network rules permit the underlying document. Full # fragments and
+        single-page-app route changes are checked when the browser reports
+        navigation, so a disallowed route can appear briefly before redirecting.
+        The extension does not verify exam software or protect exam integrity.
+      </p>
+      <h2>More resources</h2>
+      <p>
+        Use “More resources & blocking rules” to reveal additional permissions.
+        Enter one resource per line. A hostname permits its pages; a full path
+        permits that exact URL. An additional hostname can intentionally widen
+        an exact-page session.
+      </p>
+      <p>
+        “Block selected domains” keeps other sites available. Domain blocks
+        include subdomains and override allowed resources and access grants. A
+        blocked focus website is rejected at setup.
+      </p>
+      <h2>Time and commitment</h2>
+      <p>
+        Start with 1–480 minutes. Add 1–480 minutes during an active session, up
+        to a total of 24 hours. Adding time cannot change rules or reset an exit
+        wait. Existing access grants retain their original expiry.
+      </p>
+      <p>
+        Light permits an immediate exit. Committed requires at least 60 seconds;
+        Locked requires at least 15 minutes and disables temporary access.
+        Customization can increase the exit wait to 30 minutes and configure
+        0–10 access requests of 1–30 minutes each. Settings are fixed when the
+        session starts. Recovery always remains available.
+      </p>
+      <h2>Private windows</h2>
+      <p>
+        Enable “Allow in Incognito” in Chrome/Edge extension settings or “Run in
+        Private Windows: Allow” in Firefox’s add-on settings. The popup shows
+        whether access is enabled. The extension cannot turn this setting on
+        itself.
+      </p>
+      <p>
+        When enabled, session rules cover private windows in this profile.
+        Private browsing attempts are not recorded. A session started in a
+        private window uses memory-only storage and rules, creates no saved
+        history, and ends when the browser closes. A regular session’s title and
+        deliberate resource grants remain in its normal saved state, even when
+        changed from a private window.
+      </p>
+      <h2>Dashboard</h2>
+      <p>
+        Open Dashboard from the popup or the browser’s extension options. It is
+        included in the extension and works without a server. Review session
+        time, completed sessions, recorded distractions, daily activity, and
+        recent outcomes. Use Export for a JSON backup. History deletion requires
+        confirmation and is unavailable during an active session.
+      </p>
+      <h2>Recovery and limits</h2>
+      <p>
+        Use “Need to leave? → Technical recovery” to end immediately. If the
+        extension itself fails, disable it in browser settings. Other browsers,
+        profiles, browser settings, embedded content, and desktop applications
+        remain outside its control. Users can disable the extension or change
+        the clock. It is a voluntary focus aid, not tamper-proof control.
+      </p>
+      <p>
+        Browser alarms may be delayed during sleep or heavy load. Redirecting an
+        existing document can lose unsaved work. The extension does not close
+        windows, restore discarded form state, or block downloads. Exact login
+        redirects must be added explicitly.
+      </p>
+      <footer>
+        <a href="privacy.html">Privacy</a><a href="index.html">Focus</a>
+      </footer>
+    <h2>Firefox private-session limit</h2><p>Firefox private sessions are unavailable in 0.2.1 because its shared background context cannot isolate them from normal windows. Regular sessions can cover private windows with permission; private attempts remain excluded. Chromium private sessions retain their existing temporary-storage behavior.</p></main>
+  </body>
+</html>
