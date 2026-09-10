@@ -1,5 +1,7 @@
 # Lock in working guide
 
+Owner instruction: keep this project local. Do not deploy, publish, push to remote repositories, or save new remote versions without a new explicit request. The owner wants to test locally and upload to their GitHub themselves.
+
 Read `docs/MARKET-READINESS-PROPOSAL.md` for scope and `agent-work/README.md` for handoffs before repeating an audit. Keep valuable agent drafts, patches and validation summaries in `agent-work/`; temporary browser profiles can be disposable. Do not include agent archives in the shipped extension or website public assets.
 
 Use Ponytail's reviewed reuse-first approach: understand the affected flow, reuse existing code, standard library, platform controls and installed dependencies, then make the smallest correct change. Preserve validation, security, accessibility and data-loss handling. The reviewed upstream rules and license are under `agent-work/tools/ponytail/`.

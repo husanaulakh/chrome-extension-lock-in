@@ -29,3 +29,10 @@ Publisher/contact fields, store accounts, stable Gecko identity, signing, listin
 ## Tooling principles
 
 Use compact summaries with raw failure evidence retained. Source and tests remain authoritative. Graph indexes are optional and must be refreshed. No token-savings percentage is guaranteed and these tools do not alter account quotas. Avoid global hooks or configuration changes unless reviewed and needed.
+
+
+## Final delivery preference: local only
+
+The owner requested local-only delivery for personal testing and later GitHub upload. No website deployment was started. Before that instruction arrived, the Sites workflow registered a private site and saved a private source/version; no further remote publication or push will occur. The final local source remains in this folder, with Git history and a source ZIP under `artifacts/lock-in-source.zip`.
+
+Test the website at `http://localhost:3000/download`, with the original interactive preview at `/`, support at `/support`, and privacy at `/privacy`. Load `releases/chromium` as an unpacked extension or use the Firefox temporary-install instructions. The downloadable release is 0.2.1.

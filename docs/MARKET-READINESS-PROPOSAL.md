@@ -132,3 +132,10 @@ Validation: 71 Node checks pass, 17 Playwright scenarios verified (16 in the int
 Publisher name/contact fields stay blank by owner request in `docs/store-metadata.template.json`. Before public release: fill those fields, choose stable Gecko identity, finish required store artwork, validate Edge/Opera, obtain Firefox signing and store review. Safari remains a separate Apple-platform port. The private hosted website review is separate from making a public customer-facing site and submitting store listings.
 
 Final hostname follow-up: embedded-credentials navigation fails closed in the shared engine; blocked-domain DNR patterns also account for userinfo. Regression suite: 71 passed.
+
+
+## Final delivery preference: local only
+
+The owner requested local-only delivery for personal testing and later GitHub upload. No website deployment was started. Before that instruction arrived, the Sites workflow registered a private site and saved a private source/version; no further remote publication or push will occur. The final local source remains in this folder, with Git history and a source ZIP under `artifacts/lock-in-source.zip`.
+
+Test the website at `http://localhost:3000/download`, with the original interactive preview at `/`, support at `/support`, and privacy at `/privacy`. Load `releases/chromium` as an unpacked extension or use the Firefox temporary-install instructions. The downloadable release is 0.2.1.
