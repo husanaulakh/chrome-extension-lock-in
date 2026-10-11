@@ -1,14 +1,14 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import {
   ArrowDownToLine,
   ArrowUpRight,
   Check,
-  LockKeyhole,
 } from 'lucide-react';
 import { PublicHeader, PublicFooter } from '../public-chrome';
 export const metadata: Metadata = {
-  title: 'Download Lock in — Your task. Your boundaries.',
+  title: 'Download Lock in — Focus for your browser',
   description:
     'Get the local-first focus extension for desktop browsers. Clear installation steps for Chrome, Edge, and Firefox.',
 };
@@ -19,16 +19,13 @@ export default function DownloadPage() {
       <main id="main-content">
         <section className="download-hero">
           <div>
-            <p className="eyebrow">A LITTLE SPACE FOR YOUR BEST WORK</p>
+            <p className="preview-badge">Lock in for desktop browsers</p>
             <h1>
-              Your task.
-              <br />
-              <em>Your boundaries.</em>
+              A little more<br />focus.
             </h1>
             <p className="hero-description">
-              Keep the pages your work needs. Give distractions a pause. Lock in
-              brings deliberate focus to your browser, with your records kept on
-              your device.
+              Choose the websites you need for a task. Pause the rest until
+              you’re done. Your rules, your time, and your records stay with you.
             </p>
             <a className="download-primary" href="#install">
               Get the extension <ArrowDownToLine size={18} />
@@ -48,53 +45,25 @@ export default function DownloadPage() {
               </li>
             </ul>
           </div>
-          <aside className="focus-explainer" aria-label="How Lock in works">
-            <span className="brand-icon">
-              <LockKeyhole size={19} />
-            </span>
-            <p className="eyebrow">MAKE ROOM FOR ONE THING</p>
-            <h2>
-              Online work.
-              <br />
-              Fewer detours.
-            </h2>
-            <ol>
-              <li>
-                <strong>Choose the task.</strong>
-                <span>
-                  Set a duration and the websites or exact pages you need.
-                </span>
-              </li>
-              <li>
-                <strong>Check your boundaries.</strong>
-                <span>
-                  Test a URL before starting. Include any sign-in pages your
-                  work needs.
-                </span>
-              </li>
-              <li>
-                <strong>Keep going, on your terms.</strong>
-                <span>
-                  Request temporary access, add time, or use technical recovery
-                  when needed.
-                </span>
-              </li>
-            </ol>
-          </aside>
+          <figure className="product-capture">
+            <div className="capture-caption"><span>Inside Lock in</span><span>Browser extension</span></div>
+            <Image unoptimized src="/extension-preview.png" width="1280" height="800" alt="The Lock in extension setup, with task, website, duration, and commitment controls." />
+            <figcaption>A few choices. A clearer place to start.</figcaption>
+          </figure>
         </section>
         <section
           id="install"
           className="install-section"
           aria-labelledby="install-title"
         >
-          <p className="eyebrow">INSTALL ON A DESKTOP BROWSER</p>
-          <h2 id="install-title">A home for your focus.</h2>
+          <p className="eyebrow">DOWNLOAD & INSTALL</p>
+          <h2 id="install-title">Ready when you are.</h2>
           <p className="section-description">
             These are manual-install preview packages. Store listings are not
             live yet. Downloading a ZIP does not install the extension.
           </p>
           <p className="release-links">
-            Version 0.2.1 ·{' '}
+            Version 0.3.0 ·{' '}
             <a href="/SHA256SUMS" download>
               Download checksums
             </a>{' '}

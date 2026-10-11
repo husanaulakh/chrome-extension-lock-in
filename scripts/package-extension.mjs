@@ -21,7 +21,7 @@ const icon = renderToStaticMarkup(
     strokeWidth: 1.6,
   }),
 );
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" rx="30" fill="#1d1d1f"/><g transform="translate(33 30)">${icon}</g></svg>`;
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" rx="30" fill="#23634d"/><g transform="translate(33 30)">${icon}</g></svg>`;
 for (const size of [16, 32, 48, 96, 128])
   await sharp(Buffer.from(svg))
     .resize(size, size)

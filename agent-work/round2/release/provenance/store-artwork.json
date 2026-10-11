@@ -1,0 +1,31 @@
+{
+  "generatedBy": "scripts/generate-store-artwork.mjs",
+  "sourceBrand": "public/icon.svg",
+  "inputs": [
+    "public/icon.svg"
+  ],
+  "outputs": [
+    {
+      "file": "store-assets/chrome-small-promotional-440x280.png",
+      "width": 440,
+      "height": 280
+    },
+    {
+      "file": "store-assets/chrome-marquee-1400x560.png",
+      "width": 1400,
+      "height": 560
+    },
+    {
+      "file": "store-assets/edge-small-promotional-440x280.png",
+      "width": 440,
+      "height": 280
+    },
+    {
+      "file": "store-assets/edge-large-promotional-1400x560.png",
+      "width": 1400,
+      "height": 560
+    }
+  ],
+  "description": "Deterministic abstract brand artwork with a lock mark and focus boundary motif. These are promotional tiles, not extension UI screenshots and do not claim browser execution.",
+  "storeApproval": false
+}

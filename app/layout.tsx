@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 export const metadata: Metadata = {
-  title: 'Lock in — Make room for one thing',
+  title: 'Lock in — Focus for your browser',
   icons: { icon: '/icon.svg' },
   description:
-    'Choose your task, set your boundaries, and see your progress. Thoughtful focus sessions for your browser.',
+    'Choose the websites your task needs. A local, account-free focus extension with clear rules and recovery.',
 };
 export default function RootLayout({
   children,

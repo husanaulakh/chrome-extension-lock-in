@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lock in</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <strong>Lock in</strong
+        ><button id="dashboard" class="link-button">Dashboard ↗</button>
+      </header>
+      <p id="feedback" role="status" aria-live="polite"></p>
+      <button id="retry" class="link-button" type="button" hidden>
+        Try again
+      </button>
+      <p
+        id="live-status"
+        class="sr-only"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      ></p>
+      <p id="incognito-status" class="coverage-note"></p>
+      <p id="privacy-session-note" class="muted" hidden>
+        This private session is temporary and will not be added to your
+        dashboard history.
+      </p>
+      <section id="setup">
+        <h1>One thing.<br /><em>For a little while.</em></h1>
+        <button id="reuse" class="reuse-button" hidden>Use last setup</button>
+        <form id="start">
+          <label
+            >What are you working on?<input
+              name="task"
+              required
+              maxlength="120"
+              placeholder="Finish the first draft" /></label
+          ><label
+            >Focus website<input
+              name="focus"
+              required
+              placeholder="Paste a website or specific page" /></label
+          ><label class="compact"
+            >Allow<select name="scope">
+              <option value="domain">Entire website</option>
+              <option value="exact">Only this exact URL</option>
+            </select></label
+          >
+          <p id="scope-help" class="muted">All pages on this exact hostname.</p>
+          <button
+            type="button"
+            id="more-resources"
+            class="disclosure-button"
+            aria-expanded="false"
+            aria-controls="resources-panel"
+          >
+            More resources & blocking rules <span>⌄</span>
+          </button>
+          <section id="resources-panel" class="inset" hidden>
+            <label
+              >Browsing rules<select name="mode">
+                <option value="allow">Only allowed resources</option>
+                <option value="block">Block selected domains</option>
+              </select></label
+            ><label id="resources-label"
+              >Additional resources<textarea
+                name="resources"
+                rows="3"
+                placeholder="developer.mozilla.org&#10;https://example.com/specific-page#section"
+              ></textarea>
+            </label>
+            <p class="muted">
+              One per line. Hostnames permit their pages. A path permits that
+              full URL.
+            </p>
+            <label
+              >Domains to block<textarea
+                name="blocked"
+                rows="2"
+                placeholder="youtube.com&#10;reddit.com"
+              ></textarea>
+            </label>
+            <p class="muted">
+              Includes subdomains. Explicit blocks override temporary access. In
+              “Block selected domains,” all other websites remain available.
+            </p>
+            <div class="rule-checker">
+              <label for="check-url">Will this page be allowed?</label>
+              <div class="row">
+                <input
+                  id="check-url"
+                  placeholder="Paste a URL to check"
+                /><button id="check-rule" type="button">Check URL</button>
+              </div>
+              <output id="rule-result" aria-live="polite"></output>
+              <p class="muted">
+                Checks your current rules without opening the page or starting a
+                session.
+              </p>
+            </div>
+          </section>
+          <div class="row">
+            <label
+              >Minutes<input
+                name="minutes"
+                type="number"
+                min="1"
+                max="480"
+                value="25"
+                required /></label
+            ><label
+              >Commitment<select name="level">
+                <option value="light">Light</option>
+                <option value="committed" selected>Committed</option>
+                <option value="locked">Locked</option>
+              </select></label
+            >
+          </div>
+          <p id="policy" class="muted"></p>
+          <details class="custom-options">
+            <summary>Customize session</summary>
+            <label
+              >Maximum access requests<input
+                name="accessLimit"
+                type="number"
+                min="0"
+                max="10"
+                value="3" /></label
+            ><label
+              >Minutes per access request<input
+                name="accessMinutes"
+                type="number"
+                min="1"
+                max="30"
+                value="5" /></label
+            ><label
+              >Exit wait in seconds<input
+                name="exitDelay"
+                type="number"
+                min="60"
+                max="1800"
+                value="60"
+            /></label>
+          </details>
+          <p class="start-note">
+            Save your work first. Disallowed pages will redirect, including open
+            tabs. Exact # routes are checked after navigation.
+          </p>
+          <button class="primary">Lock in <span>→</span></button>
+        </form>
+      </section>
+      <section id="active" hidden>
+        <div class="session-heading">
+          <p class="eyebrow">FOCUS IN PROGRESS</p>
+          <span id="level-badge"></span>
+        </div>
+        <h1 id="task-title"></h1>
+        <div id="timer" role="timer" aria-label="Time remaining"></div>
+        <p id="finish-at" class="finish-at"></p>
+        <form id="extend" class="extend">
+          <label
+            >A little more time?<input
+              name="minutes"
+              aria-label="Minutes to add"
+              type="number"
+              value="15"
+              min="1"
+              max="480"
+              required /></label
+          ><button>Add time</button>
+        </form>
+        <a id="return" class="primary" target="_blank" rel="noreferrer"
+          >Return to your task ↗</a
+        >
+        <details>
+          <summary>Session resources</summary>
+          <div id="allowed"></div>
+        </details>
+        <section id="blocked" class="inset" hidden>
+          <h2>Not right now.</h2>
+          <p id="blocked-domain"></p>
+          <form id="access">
+            <label
+              >Need it for your task?<input
+                name="reason"
+                required
+                minlength="5"
+                maxlength="240"
+                placeholder="What do you need it for?" /></label
+            ><button id="access-button">Allow for 5 minutes</button>
+          </form>
+          <p id="no-access" hidden>Temporary access is off for this session.</p>
+        </section>
+        <details>
+          <summary>Need to leave?</summary>
+          <form id="escape">
+            <label
+              >Reason<input
+                name="reason"
+                maxlength="240"
+                placeholder="What changed?" /></label
+            ><button>Begin exit</button>
+          </form>
+          <p id="wait"></p>
+          <button id="finish" hidden>End session</button>
+          <details>
+            <summary>Technical recovery</summary>
+            <p>
+              Ends the session immediately and records a recovery. Use when a
+              rule blocks essential work or something has broken.
+            </p>
+            <button id="recover">End through recovery</button>
+          </details>
+        </details>
+      </section>
+      <footer>
+        <a href="guide.html" target="_blank">Guide & limits</a
+        ><a href="privacy.html" target="_blank">Privacy</a>
+      </footer>
+    </main>
+    <script type="module" src="ui.mjs"></script>
+  </body>
+</html>

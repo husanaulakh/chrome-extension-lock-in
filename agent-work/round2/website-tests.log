@@ -1,0 +1,65 @@
+
+Running 14 tests using 1 worker
+
+(node:14107) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14107) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/preview.spec.ts:19:1 › setup, block, temporary access, reload, and completed report (4.7s)
+  ✓   2 tests/browser/preview.spec.ts:48:1 › committed exit cannot skip the wait and survives reload (4.1s)
+  ✓   3 tests/browser/preview.spec.ts:70:1 › locked mode blocks access but provides explicit recovery (2.6s)
+  ✓   4 tests/browser/preview.spec.ts:86:1 › invalid hostname cannot start and narrow layout does not overflow (2.3s)
+  ✓   5 tests/browser/preview.spec.ts:104:1 › damaged storage is visible and recoverable (2.7s)
+  ✓   6 tests/browser/preview.spec.ts:120:1 › WebMCP contract validates input and updates the visible session (1.8s)
+  ✓   7 tests/browser/preview.spec.ts:170:1 › no external requests or page errors during a preview session (2.7s)
+  ✓   8 tests/browser/preview.spec.ts:192:1 › desktop and mobile previews remain readable with enlarged text (2.2s)
+  ✓   9 tests/browser/preview.spec.ts:217:1 › exact-page setup, optional resources, custom settings and extending a session (6.4s)
+  ✓  10 tests/browser/preview.spec.ts:253:1 › reuse last setup requires review and shows the updated finish time (3.0s)
+  ✓  11 tests/browser/preview.spec.ts:275:1 › pre-session URL check stays current and never starts or records a session (4.1s)
+  ✘  12 tests/browser/public-site.spec.ts:3:1 › download journey provides actual packages and readable help (8.9s)
+(node:15429) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15429) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 tests/browser/public-site.spec.ts:18:1 › public pages and preview keep navigation and controls usable on small screens and at 200% enlargement (10.7s)
+  ✓  14 tests/browser/public-site.spec.ts:31:1 › keyboard can skip navigation and follow the install journey (1.6s)
+
+
+  1) tests/browser/public-site.spec.ts:3:1 › download journey provides actual packages and readable help 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Set up your first session' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Set up your first session' })[22m
+    [2m    - waiting for" http://localhost:3000/download" navigation to finish...[22m
+    [2m    - navigated to "http://localhost:3000/download"[22m
+
+
+      11 |   expect((await response.body()).subarray(0, 2).toString()).toBe('PK');
+      12 |   await page.getByRole('navigation').getByRole('link', { name: 'Support' }).click();
+    > 13 |   await expect(page.getByRole('heading', { name: 'Set up your first session' })).toBeVisible();
+         |                                                                                  ^
+      14 |   await page.getByRole('link', { name: 'Privacy', exact: true }).click();
+      15 |   await expect(page.getByRole('heading', { level: 1 })).toContainText('Privacy');
+      16 | });
+        at /home/husan/lock-in/tests/browser/public-site.spec.ts:13:82
+
+    Error Context: test-results/public-site-download-journ-34761--packages-and-readable-help/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/public-site-download-journ-34761--packages-and-readable-help/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/public-site-download-journ-34761--packages-and-readable-help/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/browser/public-site.spec.ts:3:1 › download journey provides actual packages and readable help 
+  13 passed (1.1m)

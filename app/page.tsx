@@ -283,7 +283,7 @@ export default function Home() {
   }
   const policy = session ? sessionOptions(session) : null;
   return (
-    <main className="shell">
+    <main className="shell workspace-shell">
       <header className="masthead">
         <button
           className="wordmark"
@@ -322,7 +322,7 @@ export default function Home() {
           target="_blank"
           rel="noreferrer"
         >
-          Guide <ArrowUpRight size={14} />
+          Help <ArrowUpRight size={14} />
         </Link>
       </header>
       <div className="feedback-container">
@@ -336,16 +336,14 @@ export default function Home() {
       ) : (
         <div className="workspace">
           <section className="intro">
-            <p className="eyebrow">YOUR FOCUS, ON YOUR TERMS</p>
+            <p className="preview-badge">Interactive preview</p>
             <h1>
-              One thing.
-              <br />
-              <em>For a little while.</em>
+              Make time for<br />one task.
             </h1>
-            <p>Keep the pages you need. Give the rest a little distance.</p>
+            <p>Choose your task and try a focus session. This preview keeps its own records and does not block other tabs.</p>
             <div className="install-links">
-              <Link href="/download">
-                Get the extension <ArrowUpRight size={14} />
+              <Link href="/download" className="download-primary">
+                Download the extension <ArrowUpRight size={14} />
               </Link>
               <Link href="/support">
                 Installation &amp; support <ArrowUpRight size={14} />

@@ -2,6 +2,7 @@ import { api } from './api.mjs';
 import { summarize, report } from './engine.mjs';
 const $ = (id) => document.getElementById(id);
 let data = { session: null, history: [] };
+let loaded = false;
 function userMessage(error) {
   if (
     /receiving end does not exist|message port closed|could not establish connection|context invalidated|disconnected/i.test(
@@ -68,40 +69,65 @@ function render() {
   }
   if (!s.rows.length)
     $('history').textContent = 'Completed sessions will appear here.';
-  $('clear').disabled = !!data.session;
+  $('clear').disabled = !loaded || !!data.session;
+  $('export').disabled = !loaded;
+  const bytes = new TextEncoder().encode(JSON.stringify({ session: data.session, history: data.history })).byteLength;
+  $('data-size').textContent = `${data.history.length} saved sessions · approximately ${Math.max(1, Math.ceil(bytes / 1024))} KB of session records. Named setups are managed from Focus. Exported files can contain personal URLs.`;
+}
+async function readCurrent() {
+  const response = await api.runtime.sendMessage({ type: 'get' });
+  if (!response) throw Error('Background worker disconnected. Try Refresh or reopen the extension.');
+  if (response.error) throw Error(response.error);
+  if (!response.data || !Array.isArray(response.data.history)) throw Error('Saved records could not be read. Open Focus for data recovery.');
+  return response.data;
 }
 async function refresh() {
   try {
-    const response = await api.runtime.sendMessage({ type: 'get' });
-    if (response.error) throw Error(response.error);
-    data = response.data;
+    data = await readCurrent();
+    loaded = true;
     render();
     $('feedback').textContent = '';
   } catch (e) {
-    $('feedback').textContent = userMessage(e);
+    loaded = false;
+    $('export').disabled = true;
+    $('clear').disabled = true;
+    $('feedback').textContent = userMessage(e) + ' Open Focus for recovery if your saved data cannot be read.';
   }
 }
-$('period').addEventListener('change', render);
+$('period').addEventListener('change', () => { if (loaded) render(); });
 $('refresh').addEventListener('click', refresh);
-$('export').addEventListener('click', () => {
-  const href = URL.createObjectURL(
-    new Blob([JSON.stringify({ version: 1, ...data }, null, 2)], {
-      type: 'application/json',
-    }),
-  );
-  const a = document.createElement('a');
-  a.href = href;
-  a.download = 'lock-in-data.json';
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(href), 1000);
+$('export').addEventListener('click', async () => {
+  $('export').disabled = true;
+  try {
+    data = await readCurrent();
+    const href = URL.createObjectURL(
+      new Blob([JSON.stringify({ version: 1, session: data.session, history: data.history }, null, 2)], { type: 'application/json' }),
+    );
+    const a = document.createElement('a');
+    a.href = href;
+    a.download = 'lock-in-data.json';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(href), 1000);
+    $('feedback').textContent = 'Backup downloaded. Keep it private; it can contain personal URLs.';
+  } catch (error) {
+    $('feedback').textContent = userMessage(error);
+  } finally {
+    $('export').disabled = !loaded;
+  }
 });
 $('clear').addEventListener('click', () => {
   $('delete-confirm').hidden = false;
+  $('confirm-clear').focus();
+});
+$('cancel-clear').addEventListener('click', () => {
+  $('delete-confirm').hidden = true;
+  $('clear').focus();
 });
 $('confirm-clear').addEventListener('click', async () => {
   try {
     const response = await api.runtime.sendMessage({ type: 'clear-history' });
-    if (response?.error) {
+    if (!response) throw Error('Background worker disconnected. Try again.');
+    if (response.error) {
       $('feedback').textContent = response.error;
       return;
     }

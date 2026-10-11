@@ -1,37 +1,37 @@
 {
   "name": "Lock in",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "archives": [
     {
-      "file": "lock-in-chromium-v0.2.1.zip",
-      "sha256": "2c0473d1c00f1a13e8eedd1a00c541674a4e898dd9391873ad239143a4721c88"
+      "file": "lock-in-chromium-v0.3.0.zip",
+      "sha256": "8240ed988a30ae3e620786be421c9340433051393232fd8777795f54a58c0a58"
     },
     {
-      "file": "lock-in-firefox-v0.2.1.zip",
-      "sha256": "4529117ed3ffa592c7283d7abe7bc89f91302f8017c830dd4a38754396dcb3b7"
+      "file": "lock-in-firefox-v0.3.0.zip",
+      "sha256": "e2d040fc1f2288f71d2eba3b4761eabc1de771b7cdbca913d5d7557a7e3baeca"
     },
     {
       "file": "lock-in-chromium.zip",
-      "sha256": "2c0473d1c00f1a13e8eedd1a00c541674a4e898dd9391873ad239143a4721c88"
+      "sha256": "8240ed988a30ae3e620786be421c9340433051393232fd8777795f54a58c0a58"
     },
     {
       "file": "lock-in-firefox.zip",
-      "sha256": "4529117ed3ffa592c7283d7abe7bc89f91302f8017c830dd4a38754396dcb3b7"
+      "sha256": "e2d040fc1f2288f71d2eba3b4761eabc1de771b7cdbca913d5d7557a7e3baeca"
     },
     {
       "file": "lock-in-extension.zip",
-      "sha256": "2c0473d1c00f1a13e8eedd1a00c541674a4e898dd9391873ad239143a4721c88"
+      "sha256": "8240ed988a30ae3e620786be421c9340433051393232fd8777795f54a58c0a58"
     }
   ],
   "browsers": {
     "chromium": {
       "manifest": "releases/chromium/manifest.json",
-      "versionedArchive": "lock-in-chromium-v0.2.1.zip",
+      "versionedArchive": "lock-in-chromium-v0.3.0.zip",
       "stableAlias": "lock-in-chromium.zip"
     },
     "firefox": {
       "manifest": "releases/firefox/manifest.json",
-      "versionedArchive": "lock-in-firefox-v0.2.1.zip",
+      "versionedArchive": "lock-in-firefox-v0.3.0.zip",
       "stableAlias": "lock-in-firefox.zip"
     }
   }

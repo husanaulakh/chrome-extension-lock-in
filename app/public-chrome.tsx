@@ -35,7 +35,7 @@ export function PublicHeader({ current }: { current: string }) {
 export function PublicFooter() {
   return (
     <footer className="public-footer">
-      <span>Make room for one thing.</span>
+      <span>Lock in · Local by design.</span>
       <div>
         <Link href="/download">Download</Link>
         <Link href="/support">Support</Link>

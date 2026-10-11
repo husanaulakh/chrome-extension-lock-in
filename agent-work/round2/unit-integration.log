@@ -1,0 +1,476 @@
+
+> lock-in@0.2.1 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: normalizes domains and preserves the focus URL
+ok 1 - normalizes domains and preserves the focus URL
+  ---
+  duration_ms: 4.017781
+  type: 'test'
+  ...
+# Subtest: rejects unsafe or malformed destination: 
+ok 2 - rejects unsafe or malformed destination: 
+  ---
+  duration_ms: 0.829266
+  type: 'test'
+  ...
+# Subtest: rejects unsafe or malformed destination: javascript:alert(1)
+ok 3 - rejects unsafe or malformed destination: javascript:alert(1)
+  ---
+  duration_ms: 0.170871
+  type: 'test'
+  ...
+# Subtest: rejects unsafe or malformed destination: ftp://example.com
+ok 4 - rejects unsafe or malformed destination: ftp://example.com
+  ---
+  duration_ms: 2.077459
+  type: 'test'
+  ...
+# Subtest: rejects unsafe or malformed destination: https://user:pass@example.com
+ok 5 - rejects unsafe or malformed destination: https://user:pass@example.com
+  ---
+  duration_ms: 0.321211
+  type: 'test'
+  ...
+# Subtest: rejects unsafe or malformed destination: not a site
+ok 6 - rejects unsafe or malformed destination: not a site
+  ---
+  duration_ms: 0.192907
+  type: 'test'
+  ...
+# Subtest: rejects unsafe or malformed destination: https://
+ok 7 - rejects unsafe or malformed destination: https://
+  ---
+  duration_ms: 0.11139
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"task":""}
+ok 8 - rejects invalid configuration {"task":""}
+  ---
+  duration_ms: 0.378456
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"task":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+ok 9 - rejects invalid configuration {"task":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+  ---
+  duration_ms: 0.335249
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"minutes":0}
+ok 10 - rejects invalid configuration {"minutes":0}
+  ---
+  duration_ms: 0.464737
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"minutes":481}
+ok 11 - rejects invalid configuration {"minutes":481}
+  ---
+  duration_ms: 0.197008
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"minutes":1.5}
+ok 12 - rejects invalid configuration {"minutes":1.5}
+  ---
+  duration_ms: 0.085087
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"minutes":null}
+ok 13 - rejects invalid configuration {"minutes":null}
+  ---
+  duration_ms: 0.068818
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"level":"__proto__"}
+ok 14 - rejects invalid configuration {"level":"__proto__"}
+  ---
+  duration_ms: 0.061064
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"resources":null}
+ok 15 - rejects invalid configuration {"resources":null}
+  ---
+  duration_ms: 0.090712
+  type: 'test'
+  ...
+# Subtest: rejects invalid configuration {"resources":["example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com"]}
+ok 16 - rejects invalid configuration {"resources":["example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com","example.com"]}
+  ---
+  duration_ms: 0.07407
+  type: 'test'
+  ...
+# Subtest: rejects null configuration
+ok 17 - rejects null configuration
+  ---
+  duration_ms: 0.279157
+  type: 'test'
+  ...
+# Subtest: allows exact hosts, not subdomains or lookalikes
+ok 18 - allows exact hosts, not subdomains or lookalikes
+  ---
+  duration_ms: 3.742906
+  type: 'test'
+  ...
+# Subtest: resource deduplication
+ok 19 - resource deduplication
+  ---
+  duration_ms: 0.373335
+  type: 'test'
+  ...
+# Subtest: attempts are immutable and record only domain and time
+ok 20 - attempts are immutable and record only domain and time
+  ---
+  duration_ms: 0.526669
+  type: 'test'
+  ...
+# Subtest: allowed navigation does not count as a distraction
+ok 21 - allowed navigation does not count as a distraction
+  ---
+  duration_ms: 0.299115
+  type: 'test'
+  ...
+# Subtest: temporary access expires at exact boundary
+ok 22 - temporary access expires at exact boundary
+  ---
+  duration_ms: 0.803836
+  type: 'test'
+  ...
+# Subtest: grants cannot outlive the session
+ok 23 - grants cannot outlive the session
+  ---
+  duration_ms: 0.603233
+  type: 'test'
+  ...
+# Subtest: locked sessions cannot request access
+ok 24 - locked sessions cannot request access
+  ---
+  duration_ms: 0.576511
+  type: 'test'
+  ...
+# Subtest: access validates reason and duration
+ok 25 - access validates reason and duration
+  ---
+  duration_ms: 0.418903
+  type: 'test'
+  ...
+# Subtest: only three access requests are allowed
+ok 26 - only three access requests are allowed
+  ---
+  duration_ms: 0.225555
+  type: 'test'
+  ...
+# Subtest: light respects precommitted exit delay
+ok 27 - light respects precommitted exit delay
+  ---
+  duration_ms: 0.275373
+  type: 'test'
+  ...
+# Subtest: committed respects precommitted exit delay
+ok 28 - committed respects precommitted exit delay
+  ---
+  duration_ms: 0.203237
+  type: 'test'
+  ...
+# Subtest: locked respects precommitted exit delay
+ok 29 - locked respects precommitted exit delay
+  ---
+  duration_ms: 0.122739
+  type: 'test'
+  ...
+# Subtest: cannot complete early or escape without requesting
+ok 30 - cannot complete early or escape without requesting
+  ---
+  duration_ms: 2.476292
+  type: 'test'
+  ...
+# Subtest: recovery always works and is distinguishable
+ok 31 - recovery always works and is distinguishable
+  ---
+  duration_ms: 0.299281
+  type: 'test'
+  ...
+# Subtest: expired session releases websites and cannot grant access
+ok 32 - expired session releases websites and cannot grant access
+  ---
+  duration_ms: 0.502283
+  type: 'test'
+  ...
+# Subtest: reload preserves exit wait, expiry and history
+ok 33 - reload preserves exit wait, expiry and history
+  ---
+  duration_ms: 2.357516
+  type: 'test'
+  ...
+# Subtest: reload after expiry completes once and caps elapsed time
+ok 34 - reload after expiry completes once and caps elapsed time
+  ---
+  duration_ms: 0.627759
+  type: 'test'
+  ...
+# Subtest: damaged and unknown storage fails visibly
+ok 35 - damaged and unknown storage fails visibly
+  ---
+  duration_ms: 0.264058
+  type: 'test'
+  ...
+# Subtest: report groups actual domains, never manufactures activity
+ok 36 - report groups actual domains, never manufactures activity
+  ---
+  duration_ms: 0.265184
+  type: 'test'
+  ...
+# Subtest: nested storage corruption is rejected before rendering
+ok 37 - nested storage corruption is rejected before rendering
+  ---
+  duration_ms: 0.733303
+  type: 'test'
+  ...
+# Subtest: exact exam URL permits its hash route and rejects every other route
+ok 38 - exact exam URL permits its hash route and rejects every other route
+  ---
+  duration_ms: 0.228026
+  type: 'test'
+  ...
+# Subtest: exact URLs preserve case, query, fragment and trailing slash distinctions
+ok 39 - exact URLs preserve case, query, fragment and trailing slash distinctions
+  ---
+  duration_ms: 0.147467
+  type: 'test'
+  ...
+# Subtest: block mode permits other sites but denies blocked domains and subdomains
+ok 40 - block mode permits other sites but denies blocked domains and subdomains
+  ---
+  duration_ms: 0.251101
+  type: 'test'
+  ...
+# Subtest: explicit block wins over resource and cannot receive access
+ok 41 - explicit block wins over resource and cannot receive access
+  ---
+  duration_ms: 0.218778
+  type: 'test'
+  ...
+# Subtest: conflicting focus and blocked domain fails setup
+ok 42 - conflicting focus and blocked domain fails setup
+  ---
+  duration_ms: 0.169486
+  type: 'test'
+  ...
+# Subtest: empty block mode cannot silently allow everything
+ok 43 - empty block mode cannot silently allow everything
+  ---
+  duration_ms: 0.181312
+  type: 'test'
+  ...
+# Subtest: extension adds time without changing grants, rules, or the exit wait
+ok 44 - extension adds time without changing grants, rules, or the exit wait
+  ---
+  duration_ms: 0.456933
+  type: 'test'
+  ...
+# Subtest: extension rejects negative, fractional, expired, and over-24-hour requests
+ok 45 - extension rejects negative, fractional, expired, and over-24-hour requests
+  ---
+  duration_ms: 0.365142
+  type: 'test'
+  ...
+# Subtest: custom access count and duration are enforced
+ok 46 - custom access count and duration are enforced
+  ---
+  duration_ms: 0.238661
+  type: 'test'
+  ...
+# Subtest: custom options cannot shorten committed policy or enable Locked access
+ok 47 - custom options cannot shorten committed policy or enable Locked access
+  ---
+  duration_ms: 0.616457
+  type: 'test'
+  ...
+# Subtest: dashboard uses actual outcomes with an honest empty state
+ok 48 - dashboard uses actual outcomes with an honest empty state
+  ---
+  duration_ms: 24.979131
+  type: 'test'
+  ...
+# Subtest: reuse preserves original policy but strips grants, attempts, private state and extensions
+ok 49 - reuse preserves original policy but strips grants, attempts, private state and extensions
+  ---
+  duration_ms: 1.320606
+  type: 'test'
+  ...
+# Subtest: setup checker handles exact fragments and explicit blocks without mutating configuration
+ok 50 - setup checker handles exact fragments and explicit blocks without mutating configuration
+  ---
+  duration_ms: 1.711562
+  type: 'test'
+  ...
+# Subtest: canonicalizes terminal-dot hostnames for policy matching
+ok 51 - canonicalizes terminal-dot hostnames for policy matching
+  ---
+  duration_ms: 0.419095
+  type: 'test'
+  ...
+# Subtest: active policy fails closed for navigation URLs with embedded credentials
+ok 52 - active policy fails closed for navigation URLs with embedded credentials
+  ---
+  duration_ms: 0.345253
+  type: 'test'
+  ...
+# Subtest: start → DNR policy → attempt → temporary access → recovery removes rules
+ok 53 - start → DNR policy → attempt → temporary access → recovery removes rules
+  ---
+  duration_ms: 13.155305
+  type: 'test'
+  ...
+# Subtest: rejects control messages from web pages and foreign extensions
+ok 54 - rejects control messages from web pages and foreign extensions
+  ---
+  duration_ms: 0.604615
+  type: 'test'
+  ...
+# Subtest: serialized double start creates only one session
+ok 55 - serialized double start creates only one session
+  ---
+  duration_ms: 1.057662
+  type: 'test'
+  ...
+# Subtest: worker cannot bypass committed escape policy
+ok 56 - worker cannot bypass committed escape policy
+  ---
+  duration_ms: 2.097606
+  type: 'test'
+  ...
+# Subtest: locked worker rejects temporary access
+ok 57 - locked worker rejects temporary access
+  ---
+  duration_ms: 1.498884
+  type: 'test'
+  ...
+# Subtest: get after expiry archives once and releases persistent rules
+ok 58 - get after expiry archives once and releases persistent rules
+  ---
+  duration_ms: 2.254351
+  type: 'test'
+  ...
+# Subtest: rules use exact hostname boundaries and escape metacharacters
+ok 59 - rules use exact hostname boundaries and escape metacharacters
+  ---
+  duration_ms: 0.845437
+  type: 'test'
+  ...
+# Subtest: grant expiry removes allow rules; session expiry removes every rule
+ok 60 - grant expiry removes allow rules; session expiry removes every rule
+  ---
+  duration_ms: 0.819598
+  type: 'test'
+  ...
+# Subtest: extension command persists added time and keeps its rules
+ok 61 - extension command persists added time and keeps its rules
+  ---
+  duration_ms: 5.635251
+  type: 'test'
+  ...
+# Subtest: private session stays out of persistent state, dynamic rules, and history
+ok 62 - private session stays out of persistent state, dynamic rules, and history
+  ---
+  duration_ms: 1.401075
+  type: 'test'
+  ...
+# Subtest: private attempts do not enter a regular session report
+ok 63 - private attempts do not enter a regular session report
+  ---
+  duration_ms: 0.532602
+  type: 'test'
+  ...
+# Subtest: private-window permission is reported without claiming it can be enabled
+ok 64 - private-window permission is reported without claiming it can be enabled
+  ---
+  duration_ms: 0.226127
+  type: 'test'
+  ...
+# Subtest: exact URL DNR permits only the network URL; fragment checks remain in navigation policy
+ok 65 - exact URL DNR permits only the network URL; fragment checks remain in navigation policy
+  ---
+  duration_ms: 0.582777
+  type: 'test'
+  ...
+# Subtest: subframes cannot control sessions or read private records
+ok 66 - subframes cannot control sessions or read private records
+  ---
+  duration_ms: 0.366132
+  type: 'test'
+  ...
+# Subtest: blocked host rules cover trailing dots, subdomains and mixed-case without lookalikes
+ok 67 - blocked host rules cover trailing dots, subdomains and mixed-case without lookalikes
+  ---
+  duration_ms: 0.617206
+  type: 'test'
+  ...
+# Subtest: malformed saved state is rejected without overwriting the original
+ok 68 - malformed saved state is rejected without overwriting the original
+  ---
+  duration_ms: 0.26858
+  type: 'test'
+  ...
+# Subtest: Firefox spanning context rejects private starts and clears legacy private state
+ok 69 - Firefox spanning context rejects private starts and clears legacy private state
+  ---
+  duration_ms: 0.598522
+  type: 'test'
+  ...
+# Subtest: exact network rule normalizes host only and keeps path and query case significant
+ok 70 - exact network rule normalizes host only and keeps path and query case significant
+  ---
+  duration_ms: 0.7075
+  type: 'test'
+  ...
+# Subtest: generic redirect recovers exact per-tab destination after reload and worker restart
+ok 71 - generic redirect recovers exact per-tab destination after reload and worker restart
+  ---
+  duration_ms: 16.997745
+  type: 'test'
+  ...
+# Subtest: damaged-state export requires confirmation before reset
+ok 72 - damaged-state export requires confirmation before reset
+  ---
+  duration_ms: 1.908863
+  type: 'test'
+  ...
+# Subtest: DNR redirect carries no destination fragment or query
+ok 73 - DNR redirect carries no destination fragment or query
+  ---
+  duration_ms: 2.256199
+  type: 'test'
+  ...
+# Subtest: per-tab handoff preserves exact query and hash without exposing it in redirect
+ok 74 - per-tab handoff preserves exact query and hash without exposing it in redirect
+  ---
+  duration_ms: 0.673066
+  type: 'test'
+  ...
+# Subtest: expired and malformed entries are unavailable after worker restart
+ok 75 - expired and malformed entries are unavailable after worker restart
+  ---
+  duration_ms: 0.439794
+  type: 'test'
+  ...
+# Subtest: stale token cannot clear a newer destination grant
+ok 76 - stale token cannot clear a newer destination grant
+  ---
+  duration_ms: 0.466681
+  type: 'test'
+  ...
+# Subtest: extension packaging cleans, reproduces, and describes release artifacts
+ok 77 - extension packaging cleans, reproduces, and describes release artifacts
+  ---
+  duration_ms: 1316.783307
+  type: 'test'
+  ...
+1..77
+# tests 77
+# suites 0
+# pass 77
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1417.1675

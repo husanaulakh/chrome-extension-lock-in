@@ -15,7 +15,7 @@
           <p class="eyebrow">YOUR PROGRESS</p>
           <h1>Time well spent.</h1>
         </div>
-        <button id="export">Export data</button>
+        <button id="export" disabled>Export data</button>
       </div>
       <div class="dashboard-controls">
         <label
@@ -68,10 +68,12 @@
             Export a copy first. History deletion is unavailable during an
             active session.
           </p>
-          <button id="clear">Delete session history</button>
+          <p id="data-size">Loading local records…</p>
+          <button id="clear" disabled>Delete session history</button>
           <p id="delete-confirm" hidden>
             Delete all recorded sessions? This cannot be undone.
             <button id="confirm-clear">Confirm deletion</button>
+            <button id="cancel-clear">Cancel</button>
           </p>
         </details>
       </footer>

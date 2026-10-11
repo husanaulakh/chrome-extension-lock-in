@@ -10,4 +10,4 @@ For token efficiency, start with targeted `rg` queries and small reads. Summariz
 
 Authoritative engine: `core/engine.mjs`. Run `npm run package:extension` after engine/extension changes to regenerate copies and ZIPs. Validate logic changes with `npm test`, `npm run typecheck`, `npm run lint`, and relevant browser tests. Release artifacts derive their version from `extension/manifest.json`.
 
-Publisher fields intentionally remain blank until supplied by the owner. Never claim store approval or Safari support from a successful ZIP build. Hosting follows the Sites skills; only the owning agent edits the Site checkout. Subagents return staged patches for owner integration.
+Publisher fields intentionally remain blank until supplied by the owner. Never claim store approval or Safari support from a successful ZIP build. This is a standalone local project; active Sites hosting integration has been removed. Only the owning agent integrates staged changes. Subagents return staged patches for owner integration.

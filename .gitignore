@@ -41,3 +41,7 @@ next-env.d.ts
 /playwright-report/
 /artifacts/
 *.tsbuildinfo
+
+# local-only hosting history (private site config, never publish)
+.openai/hosting.json
+agent-work/round2/local-hosting-history/
