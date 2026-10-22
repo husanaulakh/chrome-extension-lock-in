@@ -19,6 +19,10 @@ import {
   removeHandoff,
 } from "./handoff.mjs";
 let queue = Promise.resolve();
+// Browser rules and alarms only need reconciliation when the effective policy
+// changes. This cache is intentionally worker-local; a restarted worker always
+// verifies the persisted browser rules again.
+let reconciledPolicy = null;
 function serial(fn) {
   const pending = queue.then(fn);
   queue = pending.catch(() => {});
@@ -114,6 +118,15 @@ async function reconcile(data) {
   }
   const dnr = api.declarativeNetRequest;
   const privatePolicy = !!data.session?.private;
+  const desired = buildRules(data.session, api.runtime.getURL(""), now);
+  const nextDeadline = data.session
+    ? Math.min(
+        data.session.endsAt,
+        ...data.session.grants.filter((grant) => grant.until > now).map((grant) => grant.until),
+      )
+    : null;
+  const fingerprint = JSON.stringify({ privatePolicy, desired, nextDeadline });
+  if (reconciledPolicy === fingerprint) return data;
   const stale = privatePolicy ? await dnr.getDynamicRules() : await dnr.getSessionRules();
   if (stale.length) {
     const change = { removeRuleIds: stale.map((r) => r.id), addRules: [] };
@@ -121,7 +134,6 @@ async function reconcile(data) {
     else await dnr.updateSessionRules(change);
   }
   const existing = privatePolicy ? await dnr.getSessionRules() : await dnr.getDynamicRules();
-  const desired = buildRules(data.session, api.runtime.getURL(""), now);
   const sameRules =
     existing.length === desired.length &&
     desired.every((rule) => {
@@ -146,13 +158,10 @@ async function reconcile(data) {
     else await dnr.updateDynamicRules(change);
   }
   await api.alarms.clear("policy");
-  if (data.session) {
-    const future = [data.session.endsAt, ...data.session.grants.map((g) => g.until)].filter(
-      (t) => t > now,
-    );
-    await api.alarms.create("policy", { when: Math.min(...future) });
-  }
+  if (nextDeadline !== null)
+    await api.alarms.create("policy", { when: nextDeadline });
   await api.action.setBadgeText({ text: data.session ? "ON" : "" });
+  reconciledPolicy = fingerprint;
   return data;
 }
 async function inspectTab(tab, data) {
@@ -175,8 +184,10 @@ async function enforce(data) {
   for (const tab of await api.tabs.query({})) {
     try {
       await inspectTab(tab, data);
-    } catch {
-      /* A tab can close between query and update. */
+    } catch (error) {
+      // Tab removal is a normal race; report other enforcement errors locally.
+      if (!/no tab with id|invalid tab id|tab not found/i.test(error?.message || ""))
+        console.warn("Lock in could not inspect a tab:", error?.name || "Browser API error");
     }
   }
 }
@@ -245,7 +256,8 @@ async function handle(message, sender) {
   let data = await reconcile(await read());
   switch (message.type) {
     case "get":
-      await enforce(data);
+      // Network rules survive worker suspension; polling the popup must not
+      // query and potentially redirect every open browser tab.
       return {
         ...data,
         handoff: isBlockedPage(sender) ? await currentHandoff(sender.tab.id) : null,
@@ -338,7 +350,10 @@ api.runtime.onStartup.addListener(() => {
   }).catch(console.error);
 });
 api.runtime.onInstalled.addListener(() => {
-  serial(async () => reconcile(await read())).catch(console.error);
+  serial(async () => {
+    const data = await reconcile(await read());
+    await enforce(data);
+  }).catch(console.error);
 });
 api.tabs.onUpdated.addListener((id, change, tab) => {
   if (change.url)
