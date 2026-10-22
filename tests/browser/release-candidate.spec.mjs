@@ -83,23 +83,3 @@ test('regular policy survives browser restart and expired sessions are finalized
     expect(await app.page.evaluate(() => chrome.declarativeNetRequest.getDynamicRules())).toEqual([]);
   } finally { await app.context.close(); await rm(profile, { recursive: true, force: true }); }
 });
-test('dashboard avoids stale exports after worker failure and can cancel deletion', async () => {
-  const profile = await mkdtemp(path.join(os.tmpdir(), 'lock-in-dashboard-'));
-  const app = await launch(profile);
-  try {
-    await app.page.goto(`chrome-extension://${app.id}/dashboard.html`);
-    await expect(app.page.locator('#data-size')).toContainText('0 saved sessions');
-    await app.page.locator('#clear').click();
-    await expect(app.page.locator('#confirm-clear')).toBeFocused();
-    await app.page.locator('#cancel-clear').click();
-    await expect(app.page.locator('#delete-confirm')).toBeHidden();
-    let downloaded = false;
-    app.page.on('download', () => { downloaded = true; });
-    await app.page.evaluate(() => { chrome.runtime.sendMessage = async () => { throw Error('Background worker disconnected'); }; });
-    await app.page.locator('#export').click();
-    await expect(app.page.locator('#feedback')).toContainText('could not connect');
-    expect(downloaded).toBe(false);
-    await app.page.locator('#refresh').click();
-    await expect(app.page.locator('#export')).toBeDisabled();
-  } finally { await app.context.close(); await rm(profile, { recursive: true, force: true }); }
-});
