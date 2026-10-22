@@ -1,6 +1,6 @@
 # Store submission preparation
 
-This document is the release gate for Lock in 0.2.1. It describes what is
+This document is the release gate for Lock in 0.3.1. It describes what is
 packaged by the repository and what a publisher still has to complete in each
 store. A successful local package or linter run is not store approval.
 
@@ -12,8 +12,8 @@ versioned archives and compatibility aliases in `public/`:
 
 | Browser target | Versioned archive | Stable alias | Build form |
 | --- | --- | --- | --- |
-| Chrome, Edge, compatible Chromium browsers | `lock-in-chromium-v0.2.1.zip` | `lock-in-chromium.zip` and `lock-in-extension.zip` | Chromium Manifest V3 service worker |
-| Firefox | `lock-in-firefox-v0.2.1.zip` | `lock-in-firefox.zip` | Firefox Manifest V3 module background script |
+| Chrome, Edge, compatible Chromium browsers | `lock-in-chromium-v0.3.1.zip` | `lock-in-chromium.zip` and `lock-in-extension.zip` | Chromium Manifest V3 service worker |
+| Firefox | `lock-in-firefox-v0.3.1.zip` | `lock-in-firefox.zip` | Firefox Manifest V3 module background script |
 
 The versioned names are derived from `extension/manifest.json`; replace the
 example version in this table when the manifest version changes. The command
@@ -202,9 +202,9 @@ decision to ship or defer each browser. No store link, approval, signing
 status, or Safari support should be represented before that sign-off.
 
 
-## Firefox private-session limit (0.2.1)
+## Firefox private-session limit (0.3.1)
 
-Firefox private sessions are unavailable in 0.2.1 because its shared background context cannot isolate them from normal windows. Regular sessions can cover private windows with permission; private attempts remain excluded. Chromium private sessions retain their existing temporary-storage behavior.
+Firefox private sessions are unavailable in 0.3.1 because its shared background context cannot isolate them from normal windows. Regular sessions can cover private windows with permission; private attempts remain excluded. Chromium private sessions retain their existing temporary-storage behavior.
 
 
 ## Prepared listing assets

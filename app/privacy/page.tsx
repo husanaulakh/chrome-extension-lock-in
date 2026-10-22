@@ -55,9 +55,10 @@ export default function PrivacyPage() {
             passwords, cookies, or keyboard input.
           </p>
           <p>
-            A blocked destination is temporarily carried in the block page’s URL
-            fragment so you can return after access is granted. Attempt
-            statistics do not retain that destination’s path or query.
+            A blocked destination is held temporarily in extension session
+            storage for up to five minutes. The block page URL contains no
+            destination fragment. Attempt statistics do not retain its path
+            or query.
           </p>
         </section>
         <section>
@@ -84,7 +85,7 @@ export default function PrivacyPage() {
         <section>
           <h2>Release status</h2>
           <p>
-            Updated 9 September 2026. These downloads are a developer preview.
+            Updated 22 October 2026. These downloads are a developer preview.
             Publisher identity and a privacy contact must be supplied before
             public store submission. See{' '}
             <Link href="/support">support and known limits</Link>.

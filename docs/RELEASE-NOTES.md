@@ -1,5 +1,15 @@
 # Release notes
 
+## 0.3.1 — release candidate
+
+- Restore blocked-page handoffs using temporary per-tab storage without exposing destination fragments.
+- Add export-first recovery for damaged saved records.
+- Avoid repeated worker reconciliation and separate browser CI gates.
+- Align privacy language with current navigation-handling behavior.
+- Declare icon rendering dependencies directly and synchronize package versions.
+
+This is not store approval or publication.
+
 ## 0.2.1
 
 This release fixes hostname and frame-control boundaries, improves failure recovery and accessibility, and adds guided downloads with reproducible browser packages.

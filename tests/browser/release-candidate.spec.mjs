@@ -83,7 +83,7 @@ test('regular policy survives browser restart and expired sessions are finalized
     expect(await app.page.evaluate(() => chrome.declarativeNetRequest.getDynamicRules())).toEqual([]);
   } finally { await app.context.close(); await rm(profile, { recursive: true, force: true }); }
 });
-test('dashboard avoids stale exports after worker failure and can cancel deletion', async () => {
+test('dashboard exports fresh records, cancels deletion and disables export on damaged storage', async () => {
   const profile = await mkdtemp(path.join(os.tmpdir(), 'lock-in-dashboard-'));
   const app = await launch(profile);
   try {
@@ -93,13 +93,12 @@ test('dashboard avoids stale exports after worker failure and can cancel deletio
     await expect(app.page.locator('#confirm-clear')).toBeFocused();
     await app.page.locator('#cancel-clear').click();
     await expect(app.page.locator('#delete-confirm')).toBeHidden();
-    let downloaded = false;
-    app.page.on('download', () => { downloaded = true; });
-    await app.page.evaluate(() => { chrome.runtime.sendMessage = async () => { throw Error('Background worker disconnected'); }; });
     await app.page.locator('#export').click();
-    await expect(app.page.locator('#feedback')).toContainText('could not connect');
-    expect(downloaded).toBe(false);
+    await expect(app.page.locator('#feedback')).toContainText('Backup downloaded.');
+    await app.page.evaluate(() => chrome.storage.local.set({ history: 'damaged' }));
     await app.page.locator('#refresh').click();
+    await expect(app.page.locator('#feedback')).toContainText('Open Focus for recovery');
     await expect(app.page.locator('#export')).toBeDisabled();
+    await expect(app.page.locator('#clear')).toBeDisabled();
   } finally { await app.context.close(); await rm(profile, { recursive: true, force: true }); }
 });

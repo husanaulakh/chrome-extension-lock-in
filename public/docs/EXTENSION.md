@@ -41,6 +41,6 @@ Inside More resources & blocking rules, paste a URL into “Will this page be al
 During a session, the preview and extension page titles show the countdown. Task names and destination URLs are not placed in the tab title. The title returns to Lock in after the session ends.
 
 
-## Firefox private-session limit (0.2.1)
+## Firefox private-session limit (0.3.1)
 
-Firefox private sessions are unavailable in 0.2.1 because its shared background context cannot isolate them from normal windows. Regular sessions can cover private windows with permission; private attempts remain excluded. Chromium private sessions retain their existing temporary-storage behavior.
+Firefox private sessions are unavailable in 0.3.1 because its shared background context cannot isolate them from normal windows. Regular sessions can cover private windows with permission; private attempts remain excluded. Chromium private sessions retain their existing temporary-storage behavior.

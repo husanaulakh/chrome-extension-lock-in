@@ -10,6 +10,8 @@ const config = {
   resources: [],
 };
 let state, rules, listener, _alarmListener, changes, memory, sessionRules;
+let tabQueries = 0;
+let alarmsScheduled = 0;
 const event = () => ({ addListener() {} });
 globalThis.chrome = {
   webNavigation: {
@@ -57,12 +59,12 @@ globalThis.chrome = {
   },
   alarms: {
     clear: async () => {},
-    create: async () => {},
+    create: async () => { alarmsScheduled += 1; },
     onAlarm: { addListener: (fn) => (_alarmListener = fn) },
   },
   action: { setBadgeText: async () => {} },
   tabs: {
-    query: async () => [],
+    query: async () => { tabQueries += 1; return []; },
     update: async (id, change) => changes.push({ id, change }),
     onUpdated: event(),
     onActivated: event(),
@@ -81,6 +83,8 @@ beforeEach(() => {
   changes = [];
   memory = {};
   sessionRules = [];
+  tabQueries = 0;
+  alarmsScheduled = 0;
 });
 test('start → DNR policy → attempt → temporary access → recovery removes rules', async () => {
   assert.ok((await send('start', config)).data.session);
@@ -288,4 +292,16 @@ test('exact network rule normalizes host only and keeps path and query case sign
   assert.ok(regex.test('https://EXAMPLE.com./Case?Key=Value'));
   assert.equal(regex.test('https://example.com/case?Key=Value'), false);
   assert.equal(regex.test('https://example.com/Case?Key=value'), false);
+});
+
+// Reading the popup repeatedly must not sweep all browser tabs or reschedule
+// an unchanged deadline; tab/navigation/startup events handle enforcement.
+test('read-only state polling avoids browser-wide re-enforcement', async () => {
+  await send('start', config);
+  const beforeQueries = tabQueries;
+  const beforeAlarms = alarmsScheduled;
+  await send('get');
+  await send('get');
+  assert.equal(tabQueries, beforeQueries);
+  assert.equal(alarmsScheduled, beforeAlarms);
 });
