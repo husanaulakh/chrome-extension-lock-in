@@ -6,7 +6,7 @@ Regular sessions retain task names, focus URLs, resource rules, blocked domains,
 
 Private navigation attempts are excluded. Private sessions use temporary browser storage and temporary network rules, with no saved history. Closing the browser clears them. Changing a regular session from a private window still changes that regular saved session. The extension's browser private-window permission is required.
 
-Blocked destinations are temporarily carried in a block page fragment to support returning after a grant. The blocked page removes the fragment after reading the return destination into memory, but the browser may transiently observe the redirect URL. Reloading that page loses the temporary return destination. Attempt statistics do not save that path or query. Exports contain personal session information and should be handled as backups.
+Blocked destinations are temporarily held as per-tab handoffs in extension session storage for up to five minutes. Block-page URLs do not include destination fragments; a reload can reuse a handoff until it expires. Attempt statistics do not save destination paths or queries. Exports contain personal session information and should be handled as backups.
 
 Storage and alarms maintain deadlines. Tabs, webNavigation and HTTP(S) host permissions allow destination enforcement. Declarative network rules redirect pages. The extension does not read page contents, cookies, passwords or keyboard input.
 

@@ -44,7 +44,7 @@ Extension messages must originate from the extension’s own pages. No content s
 
 No telemetry, authentication, cloud storage, server session API, or paid-feature check is implemented. Task titles, focus URLs, hostnames, and timestamps are personal data held locally. An export is a backup the user controls, not an anonymous analytics report. Typed access and exit reasons are not persisted.
 
-A block page holds its destination transiently in the URL fragment. Reloading that page can count another attempt. Tab-event enforcement and worker races can also affect counts. The report is a record of observed block-screen events, not a complete browsing audit or a clinical measure of attention.
+A blocked destination is kept in temporary per-tab extension session storage for up to five minutes rather than in the block-page URL. Reloading can reuse a valid handoff, but reloading the block page may count another attempt. Tab-event enforcement and worker races can also affect counts. The report is a record of observed block-screen events, not a complete browsing audit or a clinical measure of attention.
 
 Recovery is immediate by design. The extension can be disabled, removed, or bypassed through another browser. It cannot promise tamper resistance, prevent clock changes, block desktop apps, or provide a medical treatment. Existing pages redirected at session start can lose unsaved state; the UI warns before starting.
 

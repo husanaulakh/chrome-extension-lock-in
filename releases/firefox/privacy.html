@@ -45,9 +45,10 @@
         keyboard input, passwords, and cookies are not read.
       </p>
       <p>
-        The blocked destination is temporarily held in the block page’s URL
-        fragment so an approved access request can return there. Its path and
-        query are not saved in attempt statistics.
+        The blocked destination is held in temporary extension session storage
+        for up to five minutes, allowing an approved return. The block-page
+        URL contains no destination fragment. Its path and query are not saved
+        in attempt statistics.
       </p>
       <h2>Your controls</h2>
       <p>
@@ -63,6 +64,6 @@
       <footer>
         <a href="dashboard.html">Dashboard</a><a href="guide.html">Guide</a>
       </footer>
-    <h2>Firefox private-session limit</h2><p>Firefox private sessions are unavailable in 0.2.1 because its shared background context cannot isolate them from normal windows. Regular sessions can cover private windows with permission; private attempts remain excluded. Chromium private sessions retain their existing temporary-storage behavior.</p></main>
+    <h2>Firefox private-session limit</h2><p>Firefox private sessions are unavailable in 0.3.1 because its shared background context cannot isolate them from normal windows. Regular sessions can cover private windows with permission; private attempts remain excluded. Chromium private sessions retain their existing temporary-storage behavior.</p></main>
   </body>
 </html>
