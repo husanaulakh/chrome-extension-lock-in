@@ -17,6 +17,15 @@
         Try again
       </button>
       <p id="live-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+      <section id="damaged-state" class="inset" hidden>
+        <h2>Saved records need repair</h2>
+        <p>Lock in could not read its saved data. Export the original records before resetting them. The backup may contain personal URLs and task names.</p>
+        <button id="export-damaged" type="button">Export damaged records</button>
+        <label><input id="confirm-damaged-reset" type="checkbox" disabled />
+          I saved the backup and understand that resetting discards damaged records.
+        </label>
+        <button id="reset-damaged" type="button" disabled>Reset damaged records</button>
+      </section>
       <p id="incognito-status" class="coverage-note"></p>
       <p id="privacy-session-note" class="muted" hidden>
         This private session is temporary and will not be added to your

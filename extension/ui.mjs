@@ -15,11 +15,12 @@ let data = { session: null, history: [] };
 let privateWindow = false;
 let lastSessionId = '';
 let lastLiveKey = '';
-const target = location.pathname.endsWith('/blocked.html')
-  ? location.hash.slice(1)
-  : '';
-// Keep the return destination in memory after the redirect; avoid leaving it in the address bar.
-if (target) history.replaceState(null, '', location.pathname + location.search);
+const blockedPage = location.pathname.endsWith('/blocked.html');
+// Navigation destinations are private handoffs stored by the background worker,
+// not URL fragments. Keep the destination and authorization ID together.
+let target = '';
+let handoffId = '';
+let recoveryExported = false;
 const time = (ms) => {
   const s = Math.max(0, Math.ceil(ms / 1000));
   return `${Math.floor(s / 60)
@@ -47,6 +48,15 @@ async function call(type, payload = {}) {
   }
   if (response.error) throw Error(response.error);
   data = response.data;
+  if (type === 'get') {
+    $('damaged-state').hidden = true;
+    $('confirm-damaged-reset').checked = false;
+  }
+  if (blockedPage && type === 'get') {
+    const handoff = data.handoff;
+    target = typeof handoff?.destination === 'string' ? handoff.destination : '';
+    handoffId = typeof handoff?.id === 'string' ? handoff.id : '';
+  }
   $('retry').hidden = true;
   if ($('feedback').textContent.startsWith('Lock in could not connect'))
     $('feedback').textContent = '';
@@ -69,6 +79,17 @@ function userMessage(error) {
 function showError(error) {
   $('feedback').textContent = userMessage(error);
   $('retry').hidden = !isWorkerConnectionError(error);
+  if (/saved records are damaged|saved data is not supported/i.test(error?.message || '')) {
+    $('damaged-state').hidden = false;
+    $('setup').hidden = true;
+    $('active').hidden = true;
+  }
+}
+async function recoveryCommand(type, payload = {}) {
+  const response = await api.runtime.sendMessage({ type, payload });
+  if (!response) throw Error('Background worker disconnected. Reopen the extension.');
+  if (response.error) throw Error(response.error);
+  return response.data;
 }
 function action(fn) {
   return async (e) => {
@@ -126,12 +147,15 @@ function render() {
       p.textContent = `Temporary · ${g.domain} · ${time(g.until - Date.now())}`;
       $('allowed').append(p);
     }
-    $('blocked').hidden = !target;
-    $('access').hidden = !options.accessLimit;
-    $('no-access').hidden = !!options.accessLimit;
+    $('blocked').hidden = !blockedPage;
+    $('access').hidden = !target || !options.accessLimit;
+    $('no-access').hidden = !!options.accessLimit && !!target;
     $('access-button').textContent =
       `Allow for ${options.accessMinutes} minutes`;
-    if (target) {
+    if (blockedPage && !target) {
+      $('blocked-domain').textContent =
+        'The original destination is no longer available. Return to Focus and try opening it again.';
+    } else if (target) {
       try {
         const domain = destination(target).domain;
         const explicitlyBlocked = (s.blocked ?? []).some((blocked) =>
@@ -270,6 +294,42 @@ $('retry').addEventListener(
     $('feedback').textContent = 'Connection restored.';
   }),
 );
+$('export-damaged').addEventListener(
+  'click',
+  action(async () => {
+    const snapshot = await recoveryCommand('export-damaged');
+    const blob = new Blob([JSON.stringify(snapshot.damagedExport, null, 2)], {
+      type: 'application/json',
+    });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = 'lock-in-damaged-records.json';
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(href), 1000);
+    recoveryExported = true;
+    $('confirm-damaged-reset').disabled = false;
+    $('feedback').textContent = 'Backup created. Save it before confirming the reset.';
+  }),
+);
+$('confirm-damaged-reset').addEventListener('change', () => {
+  $('reset-damaged').disabled = !recoveryExported || !$('confirm-damaged-reset').checked;
+});
+$('reset-damaged').addEventListener(
+  'click',
+  action(async () => {
+    if (!recoveryExported || !$('confirm-damaged-reset').checked)
+      throw Error('Export your damaged records and confirm before resetting.');
+    await recoveryCommand('reset-damaged', { confirm: true, exportConfirmed: true });
+    recoveryExported = false;
+    $('confirm-damaged-reset').disabled = true;
+    $('reset-damaged').disabled = true;
+    await call('get');
+    $('feedback').textContent = 'Damaged records reset. You can start a new session.';
+  }),
+);
 $('dashboard').addEventListener(
   'click',
   action(async () => call('dashboard')),
@@ -277,12 +337,16 @@ $('dashboard').addEventListener(
 $('access').addEventListener(
   'submit',
   action(async (e) => {
+    if (!blockedPage || !target || !handoffId)
+      throw Error('This blocked destination has expired. Open it again from Focus.');
+    const destination = target;
     await call('access', {
-      url: target,
+      url: destination,
+      handoffId,
       reason: new FormData(e.target).get('reason'),
       minutes: sessionOptions(data.session).accessMinutes,
     });
-    if (canVisit(data.session, target)) location.href = target;
+    if (canVisit(data.session, destination)) location.href = destination;
   }),
 );
 await action(async () => {
